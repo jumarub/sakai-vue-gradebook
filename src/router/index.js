@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from '@/components/Login.vue'; // Adjust the path as needed
 import Sites from '@/components/Sites.vue'; // Adjust the path as needed
 import Cookies from 'js-cookie';
+import Assignments from '@/components/Assignments.vue';
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     path: '/sites',
     name: 'sites',
     component: Sites,
+  },
+  {
+    path: '/:siteId/assignments',
+    name: 'assignments',
+    component: Assignments,
   },
   {
     path: '/',
@@ -27,6 +33,10 @@ const router = createRouter({
 
 // Add a global navigation guard
 router.beforeEach((to, from, next) => {
+  console.log("to: ", to);
+  console.log("from: ", from);
+  console.log("next: ", next);
+
   const sessionToken = Cookies.get('JSESSIONID');
 
   if (sessionToken) {

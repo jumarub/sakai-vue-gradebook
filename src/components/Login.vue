@@ -34,6 +34,7 @@
 </template>
   
 <script>
+import { redirectTo } from '@/utils/helper';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -43,6 +44,9 @@ import Cookies from 'js-cookie';
 				username: '',
 				password: '',
 			};
+		},
+		mounted() {
+			console.log(import.meta.env.VITE_SAKAI_URL)
 		},
 		computed: {
 			// Computed property that checks if both fields have values
@@ -67,7 +71,7 @@ import Cookies from 'js-cookie';
 						// Id del servidor puede cambiar
 						Cookies.set('JSESSIONID', response.data + '.EDFPC-010', { path: '/', secure: true });
 
-						this.$router.push('/sites');
+						redirectTo(this.$router, 'sites');
 					} else {
 						// ERROR HANDLER
 					}

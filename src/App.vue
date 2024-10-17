@@ -1,26 +1,13 @@
 <template>
-  <div id="app">
+  <div id="app" class="min-w-full">
     <router-view />
   </div>
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
-import Cookies from 'js-cookie';
-
   export default {
     name: "App",
     setup() {
-      const router = useRouter();
-      
-      // Check for token on app load
-      const sessionToken = Cookies.get('JSESSIONID');
-      
-      if (sessionToken) {
-        // If token exists, redirect to /sites
-        router.push({ name: 'sites' });
-      }
-
       return {};
     },
   };
